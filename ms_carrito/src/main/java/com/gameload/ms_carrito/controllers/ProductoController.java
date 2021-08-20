@@ -41,7 +41,7 @@ public class ProductoController {
         List<Producto> productosDisponibles = new ArrayList<Producto>();
         List<Producto> productos = productoRepository.findAll();
         for (Producto producto:productos) {
-            if (producto.getInventario() != 0) {
+            if (producto.getInventario() > 0) {
                 productosDisponibles.add(producto);
             }
         }

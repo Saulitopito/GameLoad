@@ -8,7 +8,7 @@ import com.gameload.ms_carrito.repositories.OrdenRepository;
 import com.gameload.ms_carrito.repositories.ProductoRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,9 +31,33 @@ public class OrdenController {
         List<Carrito> productos = carritoRepository.findByUsuarioId(usuarioId);
         List<Orden> orden = new ArrayList<Orden>();
         Date fecha = new Date();
-        String cons = LocalDate.now().toString();
+        String cons = LocalDateTime.now().toString();
 
-        for (Carrito producto:productos) {
+        List<Orden> ordenActual = new ArrayList<Orden>();
+        for (Orden ordenAct:ordenRepository.findByUsuarioId(usuarioId)) {
+            if (ordenAct.getEstado() == "Pendiente") {
+                ordenActual.add(ordenAct);
+            }
+        }
+
+        if (ordenActual.isEmpty()) {
+            for (Carrito producto:productos) {
+                Orden elemento = new Orden();
+                elemento.setCodigoOrden(usuarioId+"ORD"+cons);
+                elemento.setUsuarioId(usuarioId);
+                elemento.setProductoId(producto.getProductoId());
+                elemento.setProductoCantidad(producto.getProductoCantidad());
+                elemento.setProductoPrecio(elemento.getProductoCantidad()*producto.getProductoPrecio());
+                elemento.setFechaCompra(fecha);
+                elemento.setEstado("Pendiente");
+                orden.add(elemento);
+                ordenRepository.save(elemento);
+            }
+        }
+        else {
+            deleteOrden(ordenActual.get(0).getCodigoOrden());
+
+            for (Carrito producto:productos) {
             Orden elemento = new Orden();
             elemento.setCodigoOrden(usuarioId+"ORD"+cons);
             elemento.setUsuarioId(usuarioId);
@@ -43,12 +67,25 @@ public class OrdenController {
             elemento.setFechaCompra(fecha);
             orden.add(elemento);
             ordenRepository.save(elemento);
+            }
         }
 
-        List<Carrito> carritos = carritoRepository.findByUsuarioId(usuarioId);
-        for (Carrito carrito: carritos) {
-            carritoRepository.delete(carrito);
-        }
+//        for (Carrito producto:productos) {
+//            Orden elemento = new Orden();
+//            elemento.setCodigoOrden(usuarioId+"ORD"+cons);
+//            elemento.setUsuarioId(usuarioId);
+//            elemento.setProductoId(producto.getProductoId());
+//            elemento.setProductoCantidad(producto.getProductoCantidad());
+//            elemento.setProductoPrecio(elemento.getProductoCantidad()*producto.getProductoPrecio());
+//            elemento.setFechaCompra(fecha);
+//            orden.add(elemento);
+//            ordenRepository.save(elemento);
+//        }
+//
+//        List<Carrito> carritos = carritoRepository.findByUsuarioId(usuarioId);
+//        for (Carrito carrito: carritos) {
+//            carritoRepository.delete(carrito);
+//        }
 
         return orden;
     }
@@ -89,6 +126,20 @@ public class OrdenController {
             Producto producto = productoRepository.findById(orden.getProductoId()).get();
             producto.setInventario(producto.getInventario()-orden.getProductoCantidad());
             productoRepository.save(producto);
+        }
+
+        List<Orden> ordenLista = ordenRepository.findByCodigoOrden(codigoOrden);
+
+        for (Orden orden:ordenLista) {
+            orden.setEstado("Confirmada");
+            ordenRepository.save(orden);
+        }
+
+        String usuarioId = ordenes.get(0).getUsuarioId();
+
+        List<Carrito> carritos = carritoRepository.findByUsuarioId(usuarioId);
+        for (Carrito carrito: carritos) {
+            carritoRepository.delete(carrito);
         }
     }
 }

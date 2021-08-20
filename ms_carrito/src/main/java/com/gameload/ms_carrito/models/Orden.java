@@ -14,8 +14,9 @@ public class Orden {
     private String productoId;
     private int productoCantidad;
     private double productoPrecio;
+    private String estado;
 
-    public Orden(String orden_id, String usuarioId, Date fechaCompra, String productoId, int productoCantidad, double productoPrecio, String codigoOrden) {
+    public Orden(String orden_id, String usuarioId, Date fechaCompra, String productoId, int productoCantidad, double productoPrecio, String codigoOrden, String estado) {
         this.orden_id = orden_id;
         this.codigoOrden = codigoOrden;
         this.usuarioId = usuarioId;
@@ -23,6 +24,7 @@ public class Orden {
         this.productoId = productoId;
         this.productoCantidad = productoCantidad;
         this.productoPrecio = productoPrecio;
+        this.estado = estado;
     }
 
     public Orden() {
@@ -83,5 +85,13 @@ public class Orden {
 
     public void setCodigoOrden(String codigoOrden) {
         this.codigoOrden = codigoOrden;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

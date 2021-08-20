@@ -56,7 +56,7 @@ public class CarritoController {
         }
         else {
             for (Carrito cart:actualCarrito) {
-                if (prod.getInventario() <= cart.getProductoCantidad()) {
+                if (prod.getInventario() <= cart.getProductoCantidad() || prod.getInventario() == 0) {
                     throw new MaximoInventarioException("No hay suficiente inventario");
                 }
                 if (cart.getProductoId() == prod.getProducto_id()) {

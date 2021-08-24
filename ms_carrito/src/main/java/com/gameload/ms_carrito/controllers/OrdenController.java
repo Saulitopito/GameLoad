@@ -69,28 +69,10 @@ public class OrdenController {
             ordenRepository.save(elemento);
             }
         }
-
-//        for (Carrito producto:productos) {
-//            Orden elemento = new Orden();
-//            elemento.setCodigoOrden(usuarioId+"ORD"+cons);
-//            elemento.setUsuarioId(usuarioId);
-//            elemento.setProductoId(producto.getProductoId());
-//            elemento.setProductoCantidad(producto.getProductoCantidad());
-//            elemento.setProductoPrecio(elemento.getProductoCantidad()*producto.getProductoPrecio());
-//            elemento.setFechaCompra(fecha);
-//            orden.add(elemento);
-//            ordenRepository.save(elemento);
-//        }
-//
-//        List<Carrito> carritos = carritoRepository.findByUsuarioId(usuarioId);
-//        for (Carrito carrito: carritos) {
-//            carritoRepository.delete(carrito);
-//        }
-
         return orden;
     }
 
-    @DeleteMapping("/orden/{codigoOrden}")
+    @DeleteMapping("/orden/{usuarioId}/{codigoOrden}")
     void deleteOrden(@PathVariable String codigoOrden) {
         List<Orden> ordenes = ordenRepository.findByCodigoOrden(codigoOrden);
         for (Orden orden: ordenes) {
@@ -104,12 +86,12 @@ public class OrdenController {
         return ordenes;
     }
 
-    @GetMapping("/orden/{codigoOrden}")
+    @GetMapping("/orden/{usuarioId}/{codigoOrden}")
     List<Orden> getOrden(@PathVariable String codigoOrden) {
         return ordenRepository.findByCodigoOrden(codigoOrden);
     }
 
-    @GetMapping("/orden/total/{codigoOrden}")
+    @GetMapping("/orden/total/{usuarioId}/{codigoOrden}")
     double valorTotal(@PathVariable String codigoOrden) {
         double total = 0;
         List<Orden> ordenes = ordenRepository.findByCodigoOrden(codigoOrden);
@@ -119,7 +101,7 @@ public class OrdenController {
         return total;
     }
 
-    @PutMapping("/orden/confirmar/{codigoOrden}")
+    @PutMapping("/orden/confirmar/{usuarioId}/{codigoOrden}")
     void confirmarOrden(@PathVariable String codigoOrden) {
         List<Orden> ordenes = getOrden(codigoOrden);
         for (Orden orden:ordenes) {

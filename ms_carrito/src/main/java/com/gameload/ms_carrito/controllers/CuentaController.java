@@ -1,7 +1,9 @@
 package com.gameload.ms_carrito.controllers;
 
+import com.gameload.ms_carrito.exceptions.CuentaNoEncontradaException;
 import com.gameload.ms_carrito.models.Cuenta;
 import com.gameload.ms_carrito.repositories.CuentaRepository;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,11 @@ public class CuentaController {
     Cuenta postCuenta(@PathVariable String cuentaId) {
         Cuenta cuenta = new Cuenta(cuentaId);
         return cuentaRepository.save(cuenta);
+    }
+
+    @GetMapping("/cuentas/{usuarioId}")
+    Cuenta getCuenta(@PathVariable String usuarioId) {
+        return cuentaRepository.findById(usuarioId).orElseThrow(() -> new CuentaNoEncontradaException("No se encontró una cuenta con el usuario "+ usuarioId));
     }
 
 }

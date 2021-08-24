@@ -35,9 +35,10 @@ public class CarritoController {
         }
     }
 
-    @DeleteMapping("/carrito/producto/{carritoId}")
-    void deleteProducto(@PathVariable String carritoId) {
-        carritoRepository.deleteById(carritoId);
+    @DeleteMapping("/carrito/producto/{usuarioId}/{productoId}")
+    void deleteProducto(@PathVariable String usuarioId, @PathVariable String productoId) {
+        Carrito carrito = carritoRepository.findByUsuarioIdAndProductoId(usuarioId, productoId);
+        carritoRepository.deleteById(carrito.getCarrito_id());
     }
 
     @PostMapping("/carrito/{usuarioId}")
@@ -55,12 +56,13 @@ public class CarritoController {
             return carritoRepository.save(carrito);
         }
         else {
-            for (Carrito cart:actualCarrito) {
+            Carrito cart = carritoRepository.findByUsuarioIdAndProductoId(usuarioId, producto.getProducto_id());
+            if(cart != null) {
                 if (prod.getInventario() <= cart.getProductoCantidad() || prod.getInventario() == 0) {
                     throw new MaximoInventarioException("No hay suficiente inventario");
                 }
                 if (cart.getProductoId() == prod.getProducto_id()) {
-                    aumentarProducto(cart, cart.getProductoCantidad()+1);
+                    aumentarProducto(cart, cart.getProductoCantidad() + 1);
                     return cart;
                 }
             }

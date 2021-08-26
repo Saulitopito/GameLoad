@@ -33,7 +33,7 @@ public class ProductoController {
 
     @GetMapping("/productos/{productoId}")
     Producto getProducto(@PathVariable String productoId) {
-        return productoRepository.findById(productoId).orElseThrow();
+        return productoRepository.findById(productoId).get();
     }
 
     @GetMapping("/productos")
@@ -48,7 +48,7 @@ public class ProductoController {
         return productosDisponibles;
     }
 
-    @GetMapping("/productos/{categoria}")
+    @GetMapping("/productos/categoria/{categoria}")
     List<Producto> getProductosCategoria(@PathVariable String categoria) {
         List<Producto> productosDisponibles = new ArrayList<Producto>();
         List<Producto> productos = productoRepository.findByCategoria(categoria);

@@ -42,6 +42,8 @@ class CarritoAPI extends RESTDataSource {
 
   async agregarCarritoByUsuarioId(usuarioId, producto){
     prod = new Object(JSON.parse(JSON.stringify(producto)));
+    console.log("prod" +prod);
+    console.log("user" +usuarioId);
     return await this.post(`/carrito/${usuarioId}`, prod);
   }
 

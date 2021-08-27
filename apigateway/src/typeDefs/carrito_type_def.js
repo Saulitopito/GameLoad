@@ -29,7 +29,7 @@ const carritoTypeDefs = gql`
         eliminarCarritoByUsuarioId(usuarioId: String!): Int
     }
 
-    type Mutation {
+    extend type Mutation {
         eliminarProductoCarritoByUsuarioIdAndProductoId(usuarioId: String!, productoId: String!): Int
     }
     
@@ -37,11 +37,11 @@ const carritoTypeDefs = gql`
         agregarCarritoByUsuarioId(usuarioId: String!, producto: ProductoInput): Carrito
     }
 
-    type Mutation {
+    extend type Mutation {
         aumentarProductoByCarrito(carrito: CarritoInput!, cantidad: Int!): Carrito
     }
 
-    type Mutation {
+    extend type Mutation {
         disminuirProductoByCarrito(carrito: CarritoInput!): Carrito
     }
 

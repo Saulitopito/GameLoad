@@ -17,7 +17,7 @@ const ordenTypeDefs = gql`
     }
 
     type Mutation {
-        eliminarOrdenByCodigoOrden(usuarioId: String!, codigoOrden: String!): Int
+        eliminarOrdenByCodigoOrden(usuarioId: String!, codigoOrden: String!): String
     }
 
     type Query {
@@ -33,7 +33,7 @@ const ordenTypeDefs = gql`
     }
 
     type Mutation {
-        confirmarOrdenByCodigoOrden(usuarioId: String!, codigoOrden: String!): Int
+        confirmarOrdenByCodigoOrden(usuarioId: String!, codigoOrden: String!): String
     }
 `;
 

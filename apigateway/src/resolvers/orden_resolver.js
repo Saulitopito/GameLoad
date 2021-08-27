@@ -8,7 +8,7 @@ const ordenResolver = {
                 return null;
             }
         },
-        ordenByCodigoOrden: (_, {usuarioId}, {codigoOrden}, {dataSources, userIdToken}) => {
+        ordenByCodigoOrden: (_, {usuarioId, codigoOrden}, {dataSources, userIdToken}) => {
             if(usuarioId == userIdToken) {
                 return dataSources.CarritoAPI.ordenByCodigoOrden(usuarioId, codigoOrden);
             }
@@ -16,7 +16,7 @@ const ordenResolver = {
                 return null;
             }
         },
-        totalValorOrdenByCodigoOrden: (_, {usuarioId}, {codigoOrden}, {dataSources, userIdToken}) => {
+        totalValorOrdenByCodigoOrden: (_, {usuarioId, codigoOrden}, {dataSources, userIdToken}) => {
             if(usuarioId == userIdToken) {
                 return dataSources.CarritoAPI.totalValorOrdenByCodigoOrden(usuarioId, codigoOrden);
             }
@@ -34,7 +34,7 @@ const ordenResolver = {
                 return null;
             }
         },
-        eliminarOrdenByCodigoOrden: (_, {usuarioId}, {codigoOrden}, {dataSources, userIdToken}) => {
+        eliminarOrdenByCodigoOrden: (_, {usuarioId, codigoOrden}, {dataSources, userIdToken}) => {
             if(usuarioId == userIdToken) {
                 return dataSources.CarritoAPI.eliminarOrdenByCodigoOrden(usuarioId, codigoOrden);
             }
@@ -42,8 +42,9 @@ const ordenResolver = {
                 return null;
             }
         },
-        confirmarOrdenByCodigoOrden: (_, {usuarioId}, {codigoOrden}, {dataSources, userIdToken}) => {
+        confirmarOrdenByCodigoOrden: (_, {usuarioId, codigoOrden}, {dataSources, userIdToken}) => {
             if(usuarioId == userIdToken) {
+                console.log(usuarioId, userIdToken);
                 return dataSources.CarritoAPI.confirmarOrdenByCodigoOrden(usuarioId, codigoOrden);
             }
             else {

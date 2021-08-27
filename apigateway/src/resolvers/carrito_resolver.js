@@ -2,11 +2,9 @@ const carritoResolver = {
     Query: {
         carritoByUsuarioId: (_, {usuarioId}, {dataSources, userIdToken}) => {
             if(usuarioId == userIdToken) {
-                console.log("if"+usuarioId+userIdToken)
                 return dataSources.CarritoAPI.carritoByUsuarioId(usuarioId);
             }
             else {
-                console.log("else"+usuarioId+userIdToken)
                 return null;
             }
         }
@@ -20,22 +18,20 @@ const carritoResolver = {
                 return null;
             }
         },
-        eliminarProductoCarritoByUsuarioIdAndProductoId: (_, {usuarioId}, {productoId}, {dataSources, userIdToken}) => {
+        eliminarProductoCarritoByUsuarioIdAndProductoId: (_, {usuarioId, productoId}, {dataSources, userIdToken}) => {
             if(usuarioId == userIdToken){
                 return dataSources.CarritoAPI.eliminarProductoCarritoByUsuarioIdAndProductoId(usuarioId, productoId);
             }
         },
-        agregarCarritoByUsuarioId: (_, {usuarioId}, {producto}, {dataSources, userIdToken}) => {
+        agregarCarritoByUsuarioId: (_, {usuarioId, producto}, {dataSources, userIdToken}) => {
             if(usuarioId == userIdToken) {
-                console.log("if" + usuarioId + userIdToken);
                 return dataSources.CarritoAPI.agregarCarritoByUsuarioId(usuarioId, producto);
             }
             else {
-                console.log("else" + usuarioId + userIdToken);
                 return null;
             }
         },
-        aumentarProductoByCarrito: (_, {carrito}, {cantidad}, {dataSources, userIdToken}) => {
+        aumentarProductoByCarrito: (_, {carrito, cantidad}, {dataSources, userIdToken}) => {
             if(carrito.usuarioId == userIdToken) {
                 return dataSources.CarritoAPI.aumentarProductoByCarrito(carrito, cantidad);
             }

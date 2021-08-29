@@ -1,6 +1,6 @@
 const productoResolver = {
     Query: {
-        productosDisponibles: (_, {dataSources}) => {
+        productosDisponibles: (_, {}, {dataSources}) => {
             return dataSources.CarritoAPI.productosDisponibles();
         },
         productosById: (_, {productoId}, {dataSources}) => {

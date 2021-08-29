@@ -51,8 +51,8 @@ class CarritoAPI extends RESTDataSource {
   }
 
   async disminuirProductoByCarrito(carrito){
-    cart = new Object(JSON.parse(JSON.stringify(carrito)));
-    return await this.put(`/carrito/disminuir`, cart);
+    carrito = new Object(JSON.parse(JSON.stringify(carrito)));
+    return await this.put(`/carrito/disminuir`, carrito);
   }
 
   async crearOrden(usuarioId){

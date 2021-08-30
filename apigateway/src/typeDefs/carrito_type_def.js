@@ -5,6 +5,7 @@ const carritoTypeDefs = gql`
         carrito_id: String!
         usuarioId: String!
         productoId: String!
+        productoNombre: String!
         productoCantidad: Int!
         productoPrecio: Float
     }
@@ -13,6 +14,7 @@ const carritoTypeDefs = gql`
         carrito_id: String!
         usuarioId: String!
         productoId: String!
+        productoNombre: String!
         productoCantidad: Int!
         productoPrecio: Float
     }

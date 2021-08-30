@@ -8,15 +8,17 @@ public class Carrito {
     private String carrito_id;
     private String usuarioId;
     private String productoId;
+    private String productoNombre;
     private int productoCantidad;
     private double productoPrecio;
 
-    public Carrito(String carrito_id, String usuarioId, String productoId, int productoCantidad, double productoPrecio) {
+    public Carrito(String carrito_id, String usuarioId, String productoId, int productoCantidad, double productoPrecio, String productoNombre) {
         this.carrito_id = carrito_id;
         this.usuarioId = usuarioId;
         this.productoId = productoId;
         this.productoCantidad = productoCantidad;
         this.productoPrecio = productoPrecio;
+        this.productoNombre = productoNombre;
     }
 
     public Carrito(String usuarioId) {
@@ -65,5 +67,13 @@ public class Carrito {
 
     public void setProductoPrecio(double productoPrecio) {
         this.productoPrecio = productoPrecio;
+    }
+
+    public String getProductoNombre() {
+        return productoNombre;
+    }
+
+    public void setProductoNombre(String productoNombre) {
+        this.productoNombre = productoNombre;
     }
 }

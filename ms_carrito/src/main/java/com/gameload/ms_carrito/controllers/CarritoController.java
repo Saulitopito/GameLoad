@@ -53,6 +53,7 @@ public class CarritoController {
             carrito.setProductoId(prod.getProducto_id());
             carrito.setProductoCantidad(1);
             carrito.setProductoPrecio(prod.getPrecio());
+            carrito.setProductoNombre(prod.getNombre());
             return carritoRepository.save(carrito);
         }
         else {
@@ -71,6 +72,7 @@ public class CarritoController {
             carrito.setProductoId(prod.getProducto_id());
             carrito.setProductoCantidad(1);
             carrito.setProductoPrecio(prod.getPrecio());
+            carrito.setProductoNombre(prod.getNombre());
             return carritoRepository.save(carrito);
         }
     }

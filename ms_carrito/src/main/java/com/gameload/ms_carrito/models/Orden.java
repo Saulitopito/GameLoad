@@ -12,11 +12,12 @@ public class Orden {
     private String usuarioId;
     private Date fechaCompra;
     private String productoId;
+    private String productoNombre;
     private int productoCantidad;
     private double productoPrecio;
     private String estado;
 
-    public Orden(String orden_id, String usuarioId, Date fechaCompra, String productoId, int productoCantidad, double productoPrecio, String codigoOrden, String estado) {
+    public Orden(String orden_id, String usuarioId, Date fechaCompra, String productoId, int productoCantidad, double productoPrecio, String codigoOrden, String estado, String productoNombre) {
         this.orden_id = orden_id;
         this.codigoOrden = codigoOrden;
         this.usuarioId = usuarioId;
@@ -25,6 +26,7 @@ public class Orden {
         this.productoCantidad = productoCantidad;
         this.productoPrecio = productoPrecio;
         this.estado = estado;
+        this.productoNombre = productoNombre;
     }
 
     public Orden() {
@@ -93,5 +95,13 @@ public class Orden {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getProductoNombre() {
+        return productoNombre;
+    }
+
+    public void setProductoNombre(String productoNombre) {
+        this.productoNombre = productoNombre;
     }
 }

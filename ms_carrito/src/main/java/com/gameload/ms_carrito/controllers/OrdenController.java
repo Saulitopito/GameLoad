@@ -46,6 +46,7 @@ public class OrdenController {
                 elemento.setCodigoOrden(usuarioId+"ORD"+cons);
                 elemento.setUsuarioId(usuarioId);
                 elemento.setProductoId(producto.getProductoId());
+                elemento.setProductoNombre(producto.getProductoNombre());
                 elemento.setProductoCantidad(producto.getProductoCantidad());
                 elemento.setProductoPrecio(elemento.getProductoCantidad()*producto.getProductoPrecio());
                 elemento.setFechaCompra(fecha);
@@ -62,6 +63,7 @@ public class OrdenController {
             elemento.setCodigoOrden(usuarioId+"ORD"+cons);
             elemento.setUsuarioId(usuarioId);
             elemento.setProductoId(producto.getProductoId());
+            elemento.setProductoNombre(producto.getProductoNombre());
             elemento.setProductoCantidad(producto.getProductoCantidad());
             elemento.setProductoPrecio(elemento.getProductoCantidad()*producto.getProductoPrecio());
             elemento.setFechaCompra(fecha);

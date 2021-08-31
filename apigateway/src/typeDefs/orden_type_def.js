@@ -7,6 +7,7 @@ const ordenTypeDefs = gql`
         usuarioId: String!
         fechaCompra: String
         productoId: String!
+        productoNombre: String!
         productoCantidad: Int!
         productoPrecio: Float
         estado: String!

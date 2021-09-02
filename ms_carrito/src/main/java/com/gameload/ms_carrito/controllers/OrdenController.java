@@ -84,7 +84,7 @@ public class OrdenController {
 
     @GetMapping("/ordenes/{usuarioId}")
     List<Orden> getOrdenes(@PathVariable String usuarioId) {
-        List<Orden> ordenes = ordenRepository.findByUsuarioId(usuarioId);
+        List<Orden> ordenes = ordenRepository.findByEstadoAndUsuarioId("Pendiente", usuarioId);
         return ordenes;
     }
 

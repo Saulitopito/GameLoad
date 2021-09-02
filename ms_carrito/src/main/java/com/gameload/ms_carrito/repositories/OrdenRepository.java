@@ -9,6 +9,6 @@ public interface OrdenRepository extends MongoRepository<Orden, String> {
 
     List<Orden> findByUsuarioId(String usuarioID);
     List<Orden> findByCodigoOrden(String codigoOrden);
-    List<Orden> findByEstado(String estado);
+    List<Orden> findByEstadoAndUsuarioId(String estado, String usuarioId);
 
 }

@@ -33,12 +33,14 @@ public class OrdenController {
         Date fecha = new Date();
         String cons = LocalDateTime.now().toString();
 
-        List<Orden> ordenActual = new ArrayList<Orden>();
-        for (Orden ordenAct:ordenRepository.findByUsuarioId(usuarioId)) {
-            if (ordenAct.getEstado() == "Pendiente") {
-                ordenActual.add(ordenAct);
-            }
-        }
+        List<Orden> ordenActual = ordenRepository.findByEstadoAndUsuarioId("Pendiente", usuarioId);
+
+//        List<Orden> ordenActual = new ArrayList<Orden>();
+//        for (Orden ordenAct:ordenRepository.findByUsuarioId(usuarioId)) {
+//            if (ordenAct.getEstado() == "Pendiente") {
+//                ordenActual.add(ordenAct);
+//            }
+//        }
 
         if (ordenActual.isEmpty()) {
             for (Carrito producto:productos) {
@@ -67,6 +69,7 @@ public class OrdenController {
             elemento.setProductoCantidad(producto.getProductoCantidad());
             elemento.setProductoPrecio(elemento.getProductoCantidad()*producto.getProductoPrecio());
             elemento.setFechaCompra(fecha);
+            elemento.setEstado("Pendiente");
             orden.add(elemento);
             ordenRepository.save(elemento);
             }

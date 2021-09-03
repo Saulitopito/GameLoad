@@ -8,9 +8,9 @@
         <button v-on:click="$router.push({name:'user_auth'})" v-if="!is_auth"> Iniciar Sesión </button>
         <button v-on:click="$router.push({name:'newuser'})" v-if="!is_auth"> Registrarse </button>
         <button v-on:click="init" v-if="is_auth" > Inicio </button>
-        <button v-on:click="products" v-if="is_auth" > Productos </button><!--cambiar luego, debe renderizar los productos disponibles-->
-        <button v-on:click="car" v-if="is_auth" > Mi Carrito </button><!--Cambiar y renderizar los productos cargados-->
-        <button v-on:click="order" v-if="is_auth" > Ordenes </button><!--Cambiar a la orden confirmada y precio total-->
+        <button v-on:click="products" v-if="is_auth" > Productos </button>
+        <button v-on:click="car" v-if="is_auth" > Mi Carrito </button>
+        <button v-on:click="order" v-if="is_auth" > Ordenes </button>
         <button v-on:click="logOut" v-if="is_auth" > Cerrar Sesión </button>
       </nav>
     </div>.

@@ -219,6 +219,7 @@ export default {
   background: #00669F;
   color: white;
   border-radius: 10px;
+  margin: 10px;
 }
 
 .confirm:hover{

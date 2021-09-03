@@ -1,26 +1,28 @@
 <template>
   <div id="Order">
-    <table>
-      <tr>
+    <div class="contenedor_factura">
+      <h3>Querido usuario {{ username }}, </h3>
+      <p>Gracias por elegirnos para realizar sus compras, esta es su orden:</p>
+      <table>
         <th>Fecha</th>
         <th>Codigo orden</th>
         <th>Producto</th>
         <th>Cantidad</th>
         <th>Precio</th>
-      </tr>
-
-      <tr v-for="ord in ordenByUsuarioId" :key="ord.producto_id">
-        <td>{{ ord.fechaCompra.substring(0, 10)}}</td>
-        <td>{{ ord.codigoOrden}}</td>
-        <td>{{ ord.productoNombre}}</td>
-        <td>{{ ord.productoCantidad}}</td>
-        <td>${{ ord.productoPrecio }} COP</td>
-      </tr>
-    </table>
-    <h2>Total: $ {{ total() }} COP</h2>
-    <button class="confirm" v-on:click="confirmOrden(ordenByUsuarioId[0].codigoOrden)">Confirmar orden</button>
-    <br>
-    <button class="confirm" v-on:click="eliminarOrden(ordenByUsuarioId[0].codigoOrden)">Eliminar orden</button>
+        <tr v-for="ord in ordenByUsuarioId" :key="ord.producto_id">
+          <td>{{ ord.fechaCompra.substring(0, 10)}}</td>
+          <td>{{ ord.codigoOrden.substring(0,5)}}</td>
+          <td>{{ ord.productoNombre}}</td>
+          <td>{{ ord.productoCantidad}}</td>
+          <td>${{ ord.productoPrecio }} COP</td>
+        </tr>
+      </table>
+      <h2>Total: $ {{ total() }} COP</h2>
+    </div>
+    <div class="botones">
+      <button class="confirm" v-on:click="confirmOrden(ordenByUsuarioId[0].codigoOrden)">Confirmar orden</button>
+      <button class="confirm-del" v-on:click="eliminarOrden(ordenByUsuarioId[0].codigoOrden)">Eliminar orden</button>
+    </div>
   </div>
 </template>
 
@@ -127,6 +129,33 @@ export default {
 
 
 <style>
+.contenedor_factura{
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  margin-bottom: 1vh;
+}
+
+.botones{
+  display: inline-block;
+}
+
+.confirm-del{
+  width: 15vw;
+  height: 5vh;
+  color: white;
+  border-radius: 10px;
+  margin: 10px;
+  background: crimson;
+}
+
+.confirm-del:hover{
+  background-color:gray;
+}
 #Order {
   width: 100%;
   height: 120%;
@@ -138,7 +167,7 @@ export default {
 }
 
 #Order table {
-  width: 50%;
+  width: 90%;
   border-collapse: collapse;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 20px;
